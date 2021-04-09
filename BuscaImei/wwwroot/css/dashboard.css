@@ -1,0 +1,26 @@
+﻿.dropdown-item.active, .dropdown-item:active {
+    color: #000;
+    text-decoration: none;
+    background-color: transparent !important;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #16181b !important;
+    text-decoration: none;
+  
+}
+
+a.nav-link{
+    color: white !important;
+}
+
+    .nav-link:hover {
+        color: #007bff !important;
+
+    }
+
+
+.sinal-obrigatorio {
+   color:red;
+   font-weight:600;
+
+}

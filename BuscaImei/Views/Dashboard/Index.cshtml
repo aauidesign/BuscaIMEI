@@ -1,0 +1,164 @@
+﻿@{
+    Layout = "_LayoutDashboard";
+}
+
+@model IEnumerable<BuscaImei.Models.Dispositivo>
+
+<!-- Começando conteudo !-->
+<div class="content-wrapper">
+
+    <div class="container-fluid">
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <span>Lista de aparelho</span>
+            </li>
+        </ol>
+
+        <div class="row ">
+            <div class="col-md-12">
+                <h2 class="text-center mt-md-3 mb-md-3">
+                    Aparelho(s) Cadastrado(s)
+                </h2>
+                <div class="list-group-item">
+
+                    <div class="table-responsive text-center">
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Modelo)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Imei)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Marca)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Status)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Usuario.Email)
+                                    </th>
+                                    <th>
+                                        Opções
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Count() == 0)
+                                {
+                                    <span class="alert-danger">Nenhuma Dispositivo Cadastrado</span>
+                                }
+                                else
+                                {
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Modelo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Imei)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Marca)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </td>
+                                            <td>
+                                                @User.Identity.Name
+                                            </td>
+                                            <td>
+                                                <a asp-controller="Dispositivo" asp-action="Cadastro" asp-route-id="@item.IdDispositivo"><button type="button" class="btn btn-warning m-2">Alterar</button></a> 
+                                                <a asp-controller="Dispositivo" asp-action="Detalhe" asp-route-id="@item.IdDispositivo"><button type="button" class="btn btn-info m-2">Detalhes</button></a> 
+                                                <button type="button" class="btn btn-danger m-2" onclick="javascript:removerDispositivo(@item.IdDispositivo)">Apagar</button>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                }
+                            </tbody>
+                        </table>
+
+                        <nav aria-label="...">
+                            <ul class="pagination pagination-sm justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Primeira</a>
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">1</a>
+                                </li>
+
+                                <li class="page-item">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+
+                                <li class="page-item ">
+                                    <a class="page-link" href="#">3</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">4</a>
+                                </li>
+
+                                <li class="page-item">
+                                    <a class="page-link" href="#">5</a>
+                                </li>
+
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Última</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="alterarStatus" tabindex="-1" role="dialog" aria-labelledby="alterarStatus" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="exampleModalLabel">Alterar Status</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza que deseja alterar o Status do aparelho selecionado?
+                        <label class="texto-login-custom text-primary text-uppercase">Status</label>
+                        <select id="inputState" class="form-control mb-2">
+                            <option selected>Escolha...</option>
+                            <option>Perdido</option>
+                            <option>Roubado/Furtado</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-success">Alterar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- terminando conteudo !-->
+
+<script>
+
+    function removerDispositivo(id) {
+
+        if (confirm("Deseja Remover o Dispositivo?")) {
+            location.href = "/Dispositivo/RemoverDispostivo/" + id;
+        }
+    }
+
+</script>

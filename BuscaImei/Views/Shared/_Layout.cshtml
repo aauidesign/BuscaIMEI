@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BuscaImei</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/animate.css" />
+    <link href="css/hover-min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link href="~/hamburgers-master/dist/hamburgers.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+
+<body>
+
+    <section id="topbar" class="d-none d-lg-block">
+        <div class="container clearfix">
+            <div class="contact-info float-left">
+                <i class="far fa-envelope"></i> <a class="emailwebsite" href="mailto:contact@example.com">contato@buscaimei.com.br</a>
+                <i class="fa fa-phone"></i>0800 818 1601
+                <i class="fa fa-heart"></i>Em Construção
+            </div>
+            <div class="social-links float-right">
+                <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="google-plus"><i class="fab fa-google"></i></a>
+                <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <nav class="navbar navbar-expand-lg navbar-light nav-custom accordion my-2 p-0 container" accesskey="">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="" asp-area="" asp-controller="Home" asp-action="Index"><img class="img-fluid img-logo" src="~/images/Logo-Buscaimei.png" alt="Alternate Text" /></a>
+
+        <div class="collapse navbar-collapse text-dark" id="navbarTogglerDemo03">
+            <ul class="navbar-nav ml-auto mr-md-5">
+                <li class="nav-item active">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#quemsomos">Quem Somos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contato">Contato</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Login">Entrar</a>
+                </li>
+            </ul>
+            <form class="form-inline">
+                <a id="btnSwing" class="d-flex btn btn-sm btn-default animated swing align-items-center justify-content-center" style="cursor:pointer;" asp-area="" asp-controller="Home" asp-action="Cadastro"><span class="font-botao">Cadastra-se</span></a>
+            </form>
+        </div>
+    </nav>
+
+    <script src="~/js/site.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    @RenderBody()
+    @RenderSection("Scripts", required: false)
+    <!-- Fim do Script verificar se o usuário apertou o Capslok do teclado-->
+    <!-- Inicio do Script validar campos do cadastro de login-->
+    <!--<script>
+
+        $(document).ready(function () {
+            $('#insert_form').on('submit', function (event) {
+                event.preventDefault();
+
+
+                if ($('#senha').val() == "") {
+                    //Alerta de campo senha vazio
+                    $("#msg-error").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">Necessário prencher o campo senha!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                }
+
+                else if ($('#senha').val().length <= 5) {
+                    //Necessário prencher o campo senha com mínimo 6 caracteres!
+                    $("#msg-error").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">Necessário prencher o campo senha com mínimo 6 caracteres!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                }
+
+                else if ($('#rep_senha').val() == "") {
+                    //Necessário prencher o campo confirmar senha!
+                    $("#msg-error").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">Necessário prencher o campo confirmar senha!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                }
+
+
+                else if ($('#rep_senha').val().length <= 5) {
+                    //Necessário prencher o campo confirmar senha com mínimo 6 caracteres!
+                    $("#msg-error").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">Necessário prencher o campo confirmar senha com mínimo 6 caracteres!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                }
+
+                else if ($('#rep_senha').val() != "" && $('#senha').val() == "") {
+                    //Necessário prencher o campo senha primeiro!
+                    $("#msg-error").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">Necessário prencher o campo senha primeiro!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                }
+
+                else if ($('#senha').val() != $('#rep_senha').val()) {
+                    //As senhas não conferem!
+                    $("#msg-error").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">As senhas não conferem!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                }
+
+
+                else {
+                    //Tudo certo obrigado!
+                    $("#msg-error").html('<div class="alert alert-success alert-dismissible fade show" role="alert">Tudo certo obrigado!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                }
+
+            });
+        });
+    </script>-->
+    <!-- Fim do Script validar campos do cadastro de login-->
+    <!-- Inicio do Script da animação do botão de Cadastrar no navbar-->
+    <script>
+
+        var pfx = ["webkit", "moz", "MS", "o", ""];
+        function prefixedEventListener(element, type, callback) {
+            for (var p = 0; p < pfx.length; p++) {
+                if (!pfx[p]) type = type.toLowerCase();
+                element.addEventListener(pfx[p] + type, callback, false);
+
+
+            }
+        }
+
+        var btnShake = document.querySelector("#btnSwing");
+
+        prefixedEventListener(btnShake, "AnimationEnd", function (e) {
+            btnShake.classList.remove("swing");
+            setTimeout(function () { btnShake.classList.add("swing"); }, 300);
+
+        });
+
+    </script>
+    <!-- Fim do Script da animação do botão de Cadastrar no navbar-->
+    <!-- Inicio do Script que starta as animações de acrodo com o Scroll da pagina-->
+    <script>
+
+        const debounce = function (func, wait, immediate) {
+            let timeout;
+            return function (...args) {
+                const context = this;
+                const later = function () {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                const callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        };
+
+        const target = document.querySelectorAll('[data-anime]');
+        const animationClass = 'animate';
+
+        function animeScroll() {
+            const windowTop = window.pageYOffset + (window.innerHeight * 0.75);
+            target.forEach((element) => {
+                console.log('i')
+                if (windowTop > element.offsetTop) {
+                    element.classList.add(animationClass);
+                } else {
+
+                }
+            })
+        }
+
+
+        const handleScroll = debounce(animeScroll, 50);
+
+        if (target.length) {
+            window.addEventListener('scroll', handleScroll);
+        }
+    </script>
+    <!-- Fim do Script que starta as animações de acrodo com o Scroll da pagina-->
+    <!-- Inicio do Script de Habilitar botão registar atraves do checkbox-->
+
+    <script>
+
+        $("[name='toggle']").click(function () {
+            var cont = $("[name='toggle']:checked").length;
+            $("#aplica").prop("disabled", cont ? false : true);
+
+        });
+
+    </script>
+    <!-- Fim do Script de Habilitar botão registar atraves do checkbox-->
+
+    <script>
+
+        ////Inicio do Script para mostrar a senha ao fazer o login-- >
+
+        const olho = document.querySelector('#olho');
+        const senha = document.querySelector('#Senha');
+
+        olho.onclick = function (event) {
+            event.preventDefault();
+
+            let type = senha.getAttribute('type');
+
+            if (type == 'password') {
+                senha.setAttribute('type', 'text');
+
+                $('.fa').removeClass('fa-eye-slash');
+                $('.fa').addClass('fa-eye');
+
+            }
+
+            if (type == 'text') {
+                senha.setAttribute('type', 'password');
+
+                $('.fa').removeClass('fa-eye');
+                $('.fa').addClass('fa-eye-slash');
+
+            }
+        }
+
+        ////Fim do Script para mostrar a senha ao fazer o login-- >
+
+    </script>
+</body>
+
+</html>

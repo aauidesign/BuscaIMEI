@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "";
+}
+<h2>@ViewData["Title"]</h2>
+
+<body class="">
+    <section class=" ">
+        <div class="bg-cadastro">
+            <div class="col-md-12">
+                <div class="row justify-content-md-center">
+
+                    <div class="col-md-12">
+                        @*CADASTRO DO USUARIO*@
+                        <form class="container" method="post" id="insert_form" action="https://localhost:44306/Auth/Cadastro">
+                            <div class="form-group">
+
+                                <label class="texto-login-custom text-primary text-uppercase" for="validationCustom01">Nome</label>
+                                <input type="text" class="form-control mb-2" id="Nome" name="Nome" aria-describedby="nomeHelp" value="" placeholder="Nome completo" required>
+
+                                <label class="texto-login-custom text-primary text-uppercase">E-mail</label>
+                                <input type="Email" class="form-control mb-2" id="Email" name="Email" aria-describedby="emailHelp" placeholder="Seu e-mail" required>
+
+                                <label class="texto-login-custom text-primary text-uppercase">Senha</label>
+                                <input type="password" class="form-control mb-2" id="Senha" name="Senha" placeholder="Digite sua senha (mínimo 6 caracteres)" required>
+
+                                <label class="texto-login-custom text-primary text-uppercase">Confirme sua Senha</label>
+                                <input type="password" class="form-control mb-2" id="rep_senha" aria-describedby="emailHelp" placeholder="Confirme sua senha (mínimo 6 caracteres)" required>
+
+                            </div>
+                            @*<div class="container">
+                <div class="row">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="consultar-acervo" data-id="consultar-acervo" name="toggle">
+                        <small class="form-text text-muted">Li e concordo com os <a href="#">termos de uso</a> </small>
+                    </div>
+                </div>
+            </div>*@
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary form-control mt-2" >Registrar</button>
+                            </div>
+                        </form>
+                        @*FIM CADSATRO USUARIO*@
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+

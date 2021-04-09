@@ -1,0 +1,117 @@
+﻿@using BuscaImei.Enum
+
+@model BuscaImei.Models.UserRequestViewModel
+
+
+@{
+    Layout = "_LayoutDashboard";
+}
+<!-- Começando conteudo !-->
+<div class="content-wrapper">
+
+    <div class="container-fluid">
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <span>Encontrei aparelho</span>
+            </li>
+        </ol>
+
+        <div class="row ">
+            <div class="col-md-12">
+                <h2 class="text-center mt-md-3 mb-md-3">
+                    Encontrei um Aparelho
+                </h2>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <form asp-controller="DispositivoEncontrado" asp-action="Cadastro" class="container" method="post">
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label class="text-primary text-uppercase">IMEI do a
+                                parelho Econtrado</label>
+                                <input id="Imei" name="Imei" type="number" class="form-control mb-2" aria-describedby="imei" placeholder="Para descobrir seu IMEI digite em seu telefone: *#06#">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="text-primary text-uppercase">Telefone</label>
+                                <input asp-for="Telefone" type="number" class="form-control mb-2" id="numeroContato" aria-describedby="numeroContato" placeholder="Telefone para contato.">
+                                <span asp-validation-for="Telefone" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="IdEstado" class="texto-login-custom text-primary text-uppercase">Estado</label>
+                                <select asp-for="IdEstado" id="#" name="IdEstado" class="form-control mb-2" asp-items="@(new SelectList(ViewBag.estado, "IdEstado", "Nome"))">
+                                    <option value="" selected>Escolha um Estado...</option>
+                                </select>
+                                <span asp-validation-for="IdEstado" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="texto-login-custom text-primary text-uppercase">Cidade</label>
+                                <select asp-for="IdCidade" id="IdCidade" name="IdCidade" class="form-control mb-2" asp-items="@(new SelectList(ViewBag.cidade, "IdCidade", "Nome"))">
+                                    <option value="" selected>Escolha um Cidade...</option>
+                                </select>
+                                <span asp-validation-for="IdCidade" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Marca" class="texto-login-custom text-primary text-uppercase">Marca</label>
+                                <select required id="marca" asp-for="Marca" asp-items="Html.GetEnumSelectList<MarcaEnum>()" class="form-control mb-2">
+                                    <option selected value="">Escolha uma Marca...</option>
+                                </select>
+                                <span asp-validation-for="Marca" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label class="text-primary text-uppercase" for="">CEP</label>
+                                <input asp-for="Cep" type="text" class="form-control mb-2" id="" aria-describedby="emailContato" value="" placeholder="CEP">
+                                <span asp-validation-for="Cep" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="text-primary text-uppercase" for="">Endereço</label>
+                                <input asp-for="Logradouro" type="text" class="form-control mb-2" id="" aria-describedby="emailContato" value="" placeholder="Endereço">
+                                <span asp-validation-for="Logradouro" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="text-primary text-uppercase" for="">Bairro</label>
+                                <input asp-for="Bairro" type="text" class="form-control mb-2" id="" aria-describedby="emailContato" value="" placeholder="Bairro">
+                                <span asp-validation-for="Bairro" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-primary text-uppercase" for="">Complemento</label>
+                                <input asp-for="Complemento" type="text" class="form-control mb-2" id="" aria-describedby="emailContato" value="" placeholder="Complemento - Opcional">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="text-primary text-uppercase" for="">Número</label>
+                                <input asp-for="Numero" type="number" class="form-control mb-2" id="" aria-describedby="emailContato" value="" placeholder="Nº">
+                                <span asp-validation-for="Numero" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-success form-control mt-2">AVISAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- terminando conteudo !-->
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

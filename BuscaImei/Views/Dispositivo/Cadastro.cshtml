@@ -1,0 +1,68 @@
+﻿@{
+    Layout = "_LayoutDashboard";
+}
+
+@using BuscaImei.Enum
+@model Dispositivo
+
+@{
+
+    var tituloPagina = Model.IdDispositivo == 0 ? "Cadastro do Aparelho" : "Atualização do Aparelho";
+    var textoButtonSalvar = Model.IdDispositivo == 0 ? "Registrar Aparelho" : "Atualizar Aparelho";
+}
+<!-- Começando conteudo !-->
+<div class="content-wrapper">
+
+    <div class="container-fluid">
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <span>
+                    @tituloPagina
+                </span>
+            </li>
+        </ol>
+
+        <div class="row ">
+            <div class="col-md-12">
+                <h2 class="text-center mt-md-3 mb-md-3">
+                    @tituloPagina
+                </h2>
+                <form asp-controller="Dispositivo" asp-action="Cadastro" asp-route-id="@Model.IdDispositivo" class="container" method="post">
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="form-group">
+
+                                <label asp-for="Marca" class="texto-login-custom text-primary text-uppercase">Marca</label>
+                                <select required id="Marca" asp-for="Marca" asp-items="Html.GetEnumSelectList<MarcaEnum>()" class="form-control mb-2">
+                                    <option selected value="">Escolha uma Marca...</option>
+                                </select>
+
+                                <label class="texto-login-custom text-primary text-uppercase">Modelo</label>
+                                <input required asp-for="Modelo" type="text" class="form-control mb-2" id="modelo" aria-describedby="modelo" placeholder="Ex: S8 PLUS, Iphone 7, J7 Metal">
+
+                                <label asp-for="Status" class="texto-login-custom text-primary text-uppercase">Status <span class="sinal-obrigatorio">*</span></label>
+                                <select required asp-for="Status" id="status" class="form-control mb-2" asp-items="Html.GetEnumSelectList<StatusEnum>()">
+                                    <option selected value="">Escolha...</option>
+                                </select>
+
+
+
+                                <label class="text-primary text-uppercase">IMEI <span class="sinal-obrigatorio">*</span></label>
+                                <input required asp-for="Imei" type="number" class="form-control mb-2" id="imei" aria-describedby="imei" placeholder="Para descobrir seu IMEI digite em seu telefone: *#06#">
+                                <button type="submit" class="btn btn-primary form-control mt-2">@textoButtonSalvar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- terminando conteudo !-->
