@@ -21,7 +21,6 @@ namespace BuscaImei.Controllers
         private readonly ApplicationDbContext _context;
 
 
-
         public DashboardController(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
             _userManager = userManager;
@@ -31,9 +30,9 @@ namespace BuscaImei.Controllers
         public async Task<IActionResult> Index()
         {
             var usuarioLogadoId = _userManager.GetUserId(User);
-            var listaFK = await _context.Dispositivos.Where(x => x.UsuarioFk == usuarioLogadoId).ToListAsync();
+            var lista = await _context.Dispositivos.Where(x => x.UsuarioFk == usuarioLogadoId).ToListAsync();
 
-            return View(listaFK);
+            return View(lista);
         }
 
         public ActionResult Configuracao()

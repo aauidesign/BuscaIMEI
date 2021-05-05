@@ -5,6 +5,8 @@ using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace BuscaImei.Controllers
 {
@@ -23,9 +25,12 @@ namespace BuscaImei.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
 
+            var usuárioLocado = _userManager.GetUserId(User);
+            var listaDispositivosEncontrados =  _context.DispositivoEncontrados.Where(x => x.UsuarioFk == usuárioLocado).ToList();
+
+            return View(listaDispositivosEncontrados);
+        }
 
         [HttpGet]
         public IActionResult CadastroDispositivoEncontrado()
@@ -40,26 +45,6 @@ namespace BuscaImei.Controllers
 
             return View();
         }
-
-        //[HttpPost]
-        //public IActionResult CadastroDispositivoEncontrado(UserRequestViewModel model)
-        //{
-
-        //    if (ModelState.IsValid)
-        //    {
-
-        //    }
-
-        //    var user = new ApplicationUser
-        //    {
-        //        Nome = model.Nome,
-        //        Tipo = model.Tipo
-
-        //    };
-
-
-        //    return View(model);
-        //}
 
         [HttpPost]
         public IActionResult Cadastro(CadastroDispositivoEncontradoViewModel model)

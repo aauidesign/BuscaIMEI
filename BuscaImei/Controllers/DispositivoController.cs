@@ -14,7 +14,7 @@ namespace BuscaImei.Controllers
 
     public class DispositivoController : Controller
     {
-        private UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
 
 
@@ -23,8 +23,6 @@ namespace BuscaImei.Controllers
             _userManager = userManager;
             _context = context;
         }
-
-
 
 
         public IActionResult Cadastro(int id)
@@ -79,13 +77,14 @@ namespace BuscaImei.Controllers
         public IActionResult RemoverDispostivo(int id)
         {
             var dispositivo = _context.Dispositivos.Find(id);
+
             _context.Dispositivos.Remove(dispositivo);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Dashboard", new { msgSucesso = "Dispositivo Excluido com sucesso!" });
         }
 
-        public async Task<IActionResult> Detalhe(int? id)
+        public async Task<IActionResult> Detalhe(int? id, DispositivoAuxViewModel model)
         {
             if (id == null)
             {
@@ -104,10 +103,16 @@ namespace BuscaImei.Controllers
             return View(dispositivo);
         }
 
+        [HttpGet]
         public IActionResult Busca()
         {
-            return View();
+            var search = Request.Query["Search"].ToString();
+
+            var dispositivos = _context.Dispositivos.Where(x => x.Imei.Contains(search));
+
+            ViewBag.Search = search;
+            return View(dispositivos);
         }
 
-    }
+    } 
 }

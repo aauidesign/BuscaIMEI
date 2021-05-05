@@ -3,7 +3,6 @@
 }
 
 @model IEnumerable<BuscaImei.Models.Dispositivo>
-
 <!-- Começando conteudo !-->
 <div class="content-wrapper">
 
@@ -76,8 +75,8 @@
                                                 @User.Identity.Name
                                             </td>
                                             <td>
-                                                <a asp-controller="Dispositivo" asp-action="Cadastro" asp-route-id="@item.IdDispositivo"><button type="button" class="btn btn-warning m-2">Alterar</button></a> 
-                                                <a asp-controller="Dispositivo" asp-action="Detalhe" asp-route-id="@item.IdDispositivo"><button type="button" class="btn btn-info m-2">Detalhes</button></a> 
+                                                <a asp-controller="Dispositivo" asp-action="Cadastro" asp-route-id="@item.IdDispositivo"><button type="button" class="btn btn-warning m-2">Alterar</button></a>
+                                                <a asp-controller="Dispositivo" asp-action="Detalhe" asp-route-id="@item.IdDispositivo"><button type="button" class="btn btn-info m-2">Detalhes</button></a>
                                                 <button type="button" class="btn btn-danger m-2" onclick="javascript:removerDispositivo(@item.IdDispositivo)">Apagar</button>
                                             </td>
                                         </tr>
@@ -86,39 +85,7 @@
                                 }
                             </tbody>
                         </table>
-
-                        <nav aria-label="...">
-                            <ul class="pagination pagination-sm justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Primeira</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1</a>
-                                </li>
-
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
-                                </li>
-
-                                <li class="page-item ">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">4</a>
-                                </li>
-
-                                <li class="page-item">
-                                    <a class="page-link" href="#">5</a>
-                                </li>
-
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Última</a>
-                                </li>
-                            </ul>
-                        </nav>
-
                     </div>
-
                 </div>
             </div>
         </div>
@@ -148,6 +115,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 <!-- terminando conteudo !-->

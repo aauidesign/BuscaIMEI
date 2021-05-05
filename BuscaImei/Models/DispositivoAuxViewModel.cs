@@ -10,6 +10,7 @@ namespace BuscaImei.Models
     public class DispositivoAuxViewModel
     {
         //Dispositivo
+        public int Id { get; set; }
         public int IdDispositivo { get; set; }
         public string Modelo { get; set; }
         public string Imei { get; set; }

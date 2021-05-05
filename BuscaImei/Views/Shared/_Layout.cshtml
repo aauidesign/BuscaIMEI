@@ -69,57 +69,7 @@
 
     @RenderBody()
     @RenderSection("Scripts", required: false)
-    <!-- Fim do Script verificar se o usuário apertou o Capslok do teclado-->
-    <!-- Inicio do Script validar campos do cadastro de login-->
-    <!--<script>
 
-        $(document).ready(function () {
-            $('#insert_form').on('submit', function (event) {
-                event.preventDefault();
-
-
-                if ($('#senha').val() == "") {
-                    //Alerta de campo senha vazio
-                    $("#msg-error").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">Necessário prencher o campo senha!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-                }
-
-                else if ($('#senha').val().length <= 5) {
-                    //Necessário prencher o campo senha com mínimo 6 caracteres!
-                    $("#msg-error").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">Necessário prencher o campo senha com mínimo 6 caracteres!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-                }
-
-                else if ($('#rep_senha').val() == "") {
-                    //Necessário prencher o campo confirmar senha!
-                    $("#msg-error").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">Necessário prencher o campo confirmar senha!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-                }
-
-
-                else if ($('#rep_senha').val().length <= 5) {
-                    //Necessário prencher o campo confirmar senha com mínimo 6 caracteres!
-                    $("#msg-error").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">Necessário prencher o campo confirmar senha com mínimo 6 caracteres!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-                }
-
-                else if ($('#rep_senha').val() != "" && $('#senha').val() == "") {
-                    //Necessário prencher o campo senha primeiro!
-                    $("#msg-error").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">Necessário prencher o campo senha primeiro!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-                }
-
-                else if ($('#senha').val() != $('#rep_senha').val()) {
-                    //As senhas não conferem!
-                    $("#msg-error").html('<div class="alert alert-warning alert-dismissible fade show" role="alert">As senhas não conferem!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-                }
-
-
-                else {
-                    //Tudo certo obrigado!
-                    $("#msg-error").html('<div class="alert alert-success alert-dismissible fade show" role="alert">Tudo certo obrigado!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-                }
-
-            });
-        });
-    </script>-->
-    <!-- Fim do Script validar campos do cadastro de login-->
-    <!-- Inicio do Script da animação do botão de Cadastrar no navbar-->
     <script>
 
         var pfx = ["webkit", "moz", "MS", "o", ""];

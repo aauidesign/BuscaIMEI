@@ -17,6 +17,7 @@ namespace BuscaImei.Data
         public DbSet<Dispositivo> Dispositivos { get; set; }
         public DbSet<DispositivoEncontrado> DispositivoEncontrados { get; set; }
         public DbSet<ApplicationUser> Usuarios { get; set; }
+        public DbSet<DispositivoAuxViewModel> DispositivoAuxViewModels { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

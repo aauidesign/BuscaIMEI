@@ -14,7 +14,6 @@ namespace BuscaImei.Models
         public int IdDispositivoEncontrado { get; set; }
         public string Imei { get; set; }
         public MarcaEnum Marca { get; set; }
-        public StatusEnum Status { get; set; }
         public string Telefone { get; set; }
         public string Logradouro { get; set; }
         public string Bairro { get; set; }
@@ -27,13 +26,7 @@ namespace BuscaImei.Models
 
         //virtual
         public virtual Cidade Cidade { get; set; }
-
         public virtual ApplicationUser Usuario { get; set; }
 
-
-        public void SetEncotrado()
-        {
-            Status = StatusEnum.Encontrado;
-        }
     }
 }

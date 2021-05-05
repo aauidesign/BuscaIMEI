@@ -12,7 +12,6 @@ namespace BuscaImei.Models
         public MarcaEnum Marca { get; set; }
         public StatusEnum Status { get; set; }
 
-
         public virtual ApplicationUser Usuario { get; set; }
         public string UsuarioFk { get; set; }
 

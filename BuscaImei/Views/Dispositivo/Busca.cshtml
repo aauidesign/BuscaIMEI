@@ -1,68 +1,96 @@
-﻿@{
+﻿@model IEnumerable<BuscaImei.Models.Dispositivo>
+
+@{
+    ViewData["Title"] = "Busca";
     Layout = "_LayoutDashboard";
 }
 
-    <!-- Começando conteudo !-->
-    <div class="content-wrapper">
+<div class="content-wrapper">
 
-        <div class="container-fluid">
+    <div class="container-fluid">
 
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="#">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <span>Busca do aparelho</span>
-                </li>
-            </ol>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <span>Busca de aparelho</span>
+            </li>
+        </ol>
 
-            <div class="row ">
-                <div class="col-md-12">
-                    <h2 class="text-center mt-md-3 mb-md-3">
-                        Busca do Aparelho
-                    </h2>
+        <div class="row ">
+            <div class="col-md-12">
+                <h2 class="text-center mt-md-3 mb-md-3">
+                    Buscar Aparelho
+                </h2>
+                <div class="list-group-item">
 
-                    <form class="container" action="/" method="post">
-                        <div class="input-group">
-                            <input type="text" name="name" class="form-control" value="" placeholder="Digite seu IMEI" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </span>
+                    <form class="mt-1" asp-action="busca" asp-controller="dispositivo" method="get">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p class="form-inline">
+                                    <input type="search" name="search" value="@ViewBag.Search" placeholder="Pesquise por IMEI..." style="width:80%" class="form-control" />
+                                    <button type="submit" name="name" value="" class="btn btn-success"><i class="fas fa-search"></i></button>
+                                    <a class="align-self-center mt-1" asp-action="Busca">Limpar pesquisa</a>
+                                </p>
+
+                            </div>
                         </div>
                     </form>
 
-                    <div class="list-group-item mt-3">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Modelo)
+                                </th>
+                                <th>
+                                    @Html.DisplayName("IMEI")
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Marca)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                        <div class="table-responsive text-center">
-                            <table class="table table-striped table-hover table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Marca</th>
-                                        <th>Modelo</th>
-                                        <th>Status</th>
-                                        <th>E-mail</th>
-                                        <th>Telefone</th>
-                                        <th>IMEI</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                            @if (ViewBag.Search == "")
+                            {
+                                <tr>
+                                    <td>
+                                        --
+                                    </td>
+                                </tr>
+                            }
 
+                            else
+                            {
+                                @foreach (var item in Model)
+                                {
                                     <tr>
-                                        <th>Samsung</th>
-                                        <td>J5 Metal</td>
-                                        <td class="alert alert-danger">Roubado/Furtado</td>
-                                        <td>fulano@gmail.com</td>
-                                        <td>(99) 9 9999-9999</td>
-                                        <td>12345678910</td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Modelo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Imei)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Marca)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                }
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <!-- terminando conteudo !-->
 
+    </div>
+</div>

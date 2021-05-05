@@ -61,14 +61,23 @@
                         </dd>
                     </dl>
 
-                    <p class="alert alert-dark lead text-center">Ops... ainda não encontraram seu dispositivo :(</p>
-                    </p>
+                    @if (Model.Imei == Model.Imei)
+                    {
+                        <p class="alert alert-success lead text-center">Oba!!! Celular Encontrado.</p>
+                    }
+
+                    else
+                    {
+                        <p class="alert alert-dark lead text-center">Ops... ainda não encontraram seu dispositivo :(</p>
+                    }
+
+
                     <form class="container mt-md-5 border p-5" method="post" id="insert_form">
                         <div class="row">
 
                             <div class="col-md-6">
                                 <label class="text-primary text-uppercase" for="emailContato">E-mail do Contato:</label>
-                                <small class="lead"></small>
+                                <small class="lead">@Html.DisplayFor(model => model.Usuario.Email)</small>
                                 <br />
                                 <label class="text-primary text-uppercase">Telefone:</label>
                                 <small class="lead"></small>
@@ -99,8 +108,7 @@
                         </div>
                     </form>
                     <div>
-                        <a class="btn btn-warning mt-3" asp-controller="Dispositivo" asp-action="Cadastro" asp-route-id="@Model.IdDispositivo">Alterar</a> |
-                        <a class="btn btn-info mt-3" asp-controller="Dashboard" asp-action="Index">Voltar</a>
+                        <a class="btn btn-light mt-3" asp-controller="Dashboard" asp-action="Index">Voltar</a>
                     </div>
                 </div>
             </div>
